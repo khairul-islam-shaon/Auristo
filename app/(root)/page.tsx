@@ -1,5 +1,5 @@
 import ProductList from "@/components/shared/product/product-list";
-import sampleData from "@/db/smaple-product";
+import sampleData from "@/db/sample-data";
 
 export default function Home() {
   return (
