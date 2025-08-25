@@ -1,8 +1,8 @@
 
-import { convertToPlainObject } from "../utils"
-import { LATEST_PRODUCTS_LIMIT } from "../constants"
-import { PrismaClient } from "@prisma/client"
 import { prisma } from "@/db/prisma"
+import { LATEST_PRODUCTS_LIMIT } from "../constants"
+import { convertToPlainObject } from "../utils"
+
 
 
 
@@ -18,4 +18,11 @@ export const getLatestProducts = async () => {
 
     return convertToPlainObject(data)
 
+}
+
+// Get single product by it's slug
+export async function getProductBySlug(slug: string) {
+    return await prisma.product.findFirst({
+        where: { slug: slug },
+    });
 }
