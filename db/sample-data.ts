@@ -1,3 +1,5 @@
+import {hashSync} from 'bcrypt-ts-edge'
+
 const sampleData = {
   products: [
     {
@@ -103,6 +105,21 @@ const sampleData = {
       banner: null,
     },
   ],
+
+  users:[
+    {
+      name:'John',
+      email:'admin@gmail.com',
+      password:hashSync('123456',10),
+      role:'admin'
+    },
+    {
+      name:'Jane',
+      email:'user@gmail.com',
+      password:hashSync('123456',10),
+      role:'user'
+    },
+  ]
 };
 
 export default sampleData;
