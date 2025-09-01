@@ -1,0 +1,16 @@
+import Footer from "@/components/shared/Footer";
+import Header from "@/components/shared/Header";
+
+export default function AuthLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <div className="flex-center min-h-screen w-full">
+     
+      {children}
+     
+    </div>
+  );
+}
