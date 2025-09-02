@@ -9,6 +9,9 @@ export async function signInWithCredentials(
   prevState: unknown,
   formData: FormData
 ) {
+
+  console.log(formData.get("email"));
+  console.log(formData.get("password"));
   try {
     const user = signInFormSchema.parse({
       email: formData.get("email"),
@@ -21,6 +24,7 @@ export async function signInWithCredentials(
   } catch (error) {
     if (isRedirectError(error)) {
       throw error;
+     
     }
     return { success: false, message: "Invalid email or password" };
   }
@@ -28,7 +32,6 @@ export async function signInWithCredentials(
 
 // Sign user out
 export async function signOutUser() {
-  // get current users cart and delete it so it does not persist to next user
-
-  await signOut();
+  console.log("signing out");
+  return await signOut();
 }

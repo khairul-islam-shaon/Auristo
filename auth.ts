@@ -1,5 +1,5 @@
 import NextAuth, { NextAuthConfig } from "next-auth";
-import {PrismaAdapter} from '@auth/prisma-adapter'
+import { PrismaAdapter } from "@auth/prisma-adapter";
 import { prisma } from "./db/prisma";
 import { compare } from "./lib/encrypt";
 import CredentialsProvider from "next-auth/providers/credentials";
@@ -23,16 +23,17 @@ export const config = {
       },
       async authorize(credentials) {
         if (credentials == null) return null;
-
+       console.log(credentials);
         // Find user in database
         const user = await prisma.user.findFirst({
           where: {
             email: credentials.email as string,
           },
         });
-
+  
         // Check if user exists and if the password matches
         if (user && user.password) {
+          console.log("object");
           const isMatch = await compare(
             credentials.password as string,
             user.password
@@ -58,8 +59,8 @@ export const config = {
     async session({ session, user, trigger, token }: any) {
       session.user.id = token.sub;
 
-      if(trigger === "update"){
-        session.user.name = user
+      if (trigger === "update") {
+        session.user.name = user;
       }
       return session;
     },
